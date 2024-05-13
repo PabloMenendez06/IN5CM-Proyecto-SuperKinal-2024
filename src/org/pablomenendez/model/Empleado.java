@@ -51,11 +51,11 @@ public class Empleado {
         this.nombreEmpleado = nombreEmpleado;
     }
 
-    public String getapellidoEmpleado() {
+    public String getApellidoEmpleado() {
         return apellidoEmpleado;
     }
 
-    public void setapellidoEmpleado(String apellidoEmpleado) {
+    public void setaApellidoEmpleado(String apellidoEmpleado) {
         this.apellidoEmpleado = apellidoEmpleado;
     }
 

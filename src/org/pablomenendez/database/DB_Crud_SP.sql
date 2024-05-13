@@ -378,7 +378,12 @@ call sp_agregarEmpleado('Justo','Barrios',3500.00,'07:30:00','17:00:00',1);
 Delimiter $$
 create procedure sp_listarEmpleados()
 begin
-    select * from Empleados;
+    select EP.empleadoId, EP.nombreEmpleado, EP.apellidoEmpleado, EP.sueldo, EP.horaDeEntrada, EP.horaDeSalida,
+        concat("Id: ", Ca.cargoId, " | ", Ca.nombreCargo) as cargo, 
+        concat(EE.nombreEmpleado, ' ', EE.apellidoEmpleado) as nombreEncargado
+    from Empleados ep
+    join Cargos Ca on EP.cargoId = Ca.cargoId
+    left join Empleados EE on EP.encargadoId = EE.empleadoId;
 end$$
 Delimiter ;
 
@@ -403,7 +408,24 @@ Delimiter ;
 Delimiter $$
 create procedure sp_buscarEmpleado(empId int)
 begin
-    select * from Empleados where empleadoId = empId;
+    select EP.empleadoId, EP.nombreEmpleado, EP.apellidoEmpleado, EP.sueldo, EP.horaentrada, EP.horaSalida,
+        concat("Id: ", Ca.cargoId, " | ", Ca.nombreCargo) as cargo, 
+        concat(EE.nombreEmpleado, ' ', EE.apellidoEmpleado) as nombreEncargado
+    from Empleados EP
+    join Cargos Ca on EP.cargoId = Ca.cargoId
+    left join Empleados EE on EP.encargadoId = EE.empleadoId
+	where EP.empleadoId = empId;
+end$$
+Delimiter ;
+
+Delimiter $$
+create procedure sp_AsignarEncargado(In empId Int, In encarId int)
+begin
+
+	Update Empleados  
+		Set 
+			Empleados.encargadoId = encarId
+			Where empleadoId = empId;
 end$$
 Delimiter ;
 -- ////////////////////////////////////////////////////////////////////////////////////////// Final /////////////////////////////////////////////////////

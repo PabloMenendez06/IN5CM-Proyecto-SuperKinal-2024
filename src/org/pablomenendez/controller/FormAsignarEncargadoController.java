@@ -81,7 +81,7 @@ private Main stage;
     public void asignarEncargado(){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "CALL sp_AsignarEncargado(?,?)";
+            String sql = "call sp_AsignarEncargado(?,?)";
             statement = conexion.prepareStatement(sql);
             statement.setInt(1, Integer.parseInt(tfEmpleadoId.getText()));
             statement.setInt(2,((Empleado)cmbEncargados.getSelectionModel().getSelectedItem()).getEmpleadoId());
@@ -108,7 +108,7 @@ private Main stage;
         
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = " CALL sp_ListarEmpleados()";
+            String sql = " call sp_listarEmpleados()";
             statement = conexion.prepareStatement(sql);
             resultSet = statement.executeQuery();
             
