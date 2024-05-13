@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.pablomenendez.controller.FormCargoController">
+   <children>
+      <ImageView fitHeight="750.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/FondoFormularioCargo.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="tfCargoId" editable="false" layoutX="14.0" layoutY="148.0" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="361.0" />
+      <TextField fx:id="tfNombreCargo" layoutX="14.0" layoutY="316.0" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="361.0" promptText="escribe el nombre del cargo" />
+      <TextField fx:id="tfDescripcionCargo" layoutX="14.0" layoutY="486.0" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="361.0" promptText="escribe la descripcion del cargo" />
+      <Button fx:id="btnGuardar" layoutX="46.0" layoutY="589.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="83.0" prefWidth="131.0" style="-fx-background-color: #D0A933; -fx-background-radius: 100; -fx-border-color: black; -fx-border-radius: 100; -fx-border-width: 2;" text="Guardar">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnCancelar" layoutX="262.0" layoutY="589.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="83.0" prefWidth="131.0" style="-fx-background-color: #D0A933; -fx-background-radius: 100; -fx-border-color: black; -fx-border-radius: 100; -fx-border-width: 2;" text="Cancelar">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

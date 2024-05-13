@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.pablomenendez.controller.MenuTicketSoporteController">
+   <children>
+      <ImageView fitHeight="750.0" fitWidth="1200.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/MenuTicketSoporte.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="tfTicketId" editable="false" layoutX="9.0" layoutY="192.0" prefHeight="34.0" prefWidth="221.0" />
+      <TextArea fx:id="taDescripcion" layoutX="18.0" layoutY="272.0" prefHeight="147.0" prefWidth="303.0" style="-fx-border-color: black;" wrapText="true" />
+      <ComboBox fx:id="cmbCliente" layoutX="312.0" layoutY="193.0" prefHeight="35.0" prefWidth="214.0" style="-fx-background-color: #D0A933; -fx-border-color: black;" />
+      <ComboBox fx:id="cmbFactura" layoutX="639.0" layoutY="196.0" prefHeight="35.0" prefWidth="207.0" style="-fx-background-color: #D0A933; -fx-border-color: black;" />
+      <ComboBox fx:id="cmbEstatus" layoutX="16.0" layoutY="509.0" prefHeight="35.0" prefWidth="214.0" style="-fx-background-color: #D0A933; -fx-border-color: black;" />
+      <TableView fx:id="tblTickets" layoutX="402.0" layoutY="295.0" onMouseClicked="#cargarFormulario" prefHeight="409.0" prefWidth="764.0" style="-fx-border-color: black;">
+        <columns>
+          <TableColumn fx:id="colTicketId" prefWidth="75.0" text="Ticket Id" />
+          <TableColumn fx:id="colDescripcion" prefWidth="229.86663818359375" text="Descipcion" />
+            <TableColumn fx:id="colEstatus" prefWidth="139.7332763671875" text="Estatus" />
+            <TableColumn fx:id="colCliente" prefWidth="162.933349609375" text="Cliente" />
+            <TableColumn fx:id="colFacturaId" prefWidth="155.466796875" text="Factura Id" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnGuardar" layoutX="14.0" layoutY="573.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="144.0" style="-fx-background-color: #D0A933; -fx-background-radius: 100; -fx-border-color: black; -fx-border-radius: 100; -fx-border-width: 2;" text="Guardar">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnVaciar" layoutX="213.0" layoutY="571.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="144.0" style="-fx-background-color: #D0A933; -fx-background-radius: 100; -fx-border-color: black; -fx-border-radius: 100; -fx-border-width: 2;" text="Vaciar Form">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnRegresar" layoutX="23.0" layoutY="683.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="46.0" prefWidth="114.0" style="-fx-background-color: #D0A933; -fx-background-radius: 100; -fx-border-color: black; -fx-border-radius: 100; -fx-border-width: 2;" text="Regresar">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
