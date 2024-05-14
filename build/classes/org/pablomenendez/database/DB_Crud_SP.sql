@@ -382,7 +382,7 @@ begin
         concat("Id: ", Ca.cargoId, " | ", Ca.nombreCargo) as cargo, 
         concat(EE.nombreEmpleado, ' ', EE.apellidoEmpleado) as nombreEncargado
     from Empleados ep
-    join Cargos Ca on EP.cargoId = Ca.cargoId
+    join Cargo Ca on EP.cargoId = Ca.cargoId
     left join Empleados EE on EP.encargadoId = EE.empleadoId;
 end$$
 Delimiter ;

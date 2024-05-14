@@ -47,7 +47,7 @@ public class MenuEmpleadosController implements Initializable {
     TableView tblEmpleados;
     
     @FXML
-    TableColumn colEmpleadoId,colNombreE,colApellidoE,colSueldo,colHoraEntrada,colHoraSalida,colCargoId,colEncargadoId;
+    TableColumn colEmpleadoId,colNombreE,colApellidoE,colSueldo,colHoraEntrada,colHoraDeSalida,colCargoId,colEncargadoId;
     
     @FXML
     Button btnRegresar,btnAgregar,btnEditar,btnEliminar,btnBuscar,btnAgregarEncargado;
@@ -95,11 +95,11 @@ public class MenuEmpleadosController implements Initializable {
             tblEmpleados.setItems(listarEmpleados()); 
 
             colEmpleadoId.setCellValueFactory(new PropertyValueFactory<Empleado, Integer>("empleadoId"));
-            colNombreE.setCellValueFactory(new PropertyValueFactory<Empleado, String>("nombreE"));
-            colApellidoE.setCellValueFactory(new PropertyValueFactory<Empleado, String>("apellidoE"));
+            colNombreE.setCellValueFactory(new PropertyValueFactory<Empleado, String>("nombreEmpleado"));
+            colApellidoE.setCellValueFactory(new PropertyValueFactory<Empleado, String>("apellidoEmpleado"));
             colSueldo.setCellValueFactory(new PropertyValueFactory<Empleado, Double>("sueldo"));
             colHoraEntrada.setCellValueFactory(new PropertyValueFactory<Empleado, Time>("horaDeEntrada"));
-            colHoraSalida.setCellValueFactory(new PropertyValueFactory<Empleado, Time>("horaDeSalida"));
+            colHoraDeSalida.setCellValueFactory(new PropertyValueFactory<Empleado, Time>("horaDeSalida"));
             colCargoId.setCellValueFactory(new PropertyValueFactory<Empleado, String>("cargo"));
             colEncargadoId.setCellValueFactory(new PropertyValueFactory<Empleado, String>("encargado"));
         }

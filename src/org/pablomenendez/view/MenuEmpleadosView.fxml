@@ -12,8 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="org.pablomenendez.controller.MenuEmpleadosController">
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.pablomenendez.controller.MenuEmpleadosController">
    <children>
       <ImageView fitHeight="750.0" fitWidth="1200.0" layoutX="-4.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -32,7 +31,7 @@
             <TableColumn fx:id="colApellidoE" prefWidth="91.73330688476562" text="Apellido" />
             <TableColumn fx:id="colSueldo" prefWidth="99.46664428710938" text="Sueldo" />
             <TableColumn fx:id="colHoraEntrada" prefWidth="117.33331298828125" text="Hora Entrada" />
-            <TableColumn fx:id="colHoraSalida" prefWidth="109.60003662109375" text="Hora Salida" />
+            <TableColumn fx:id="colHoraDeSalida" prefWidth="109.60003662109375" text="Hora Salida" />
             <TableColumn fx:id="colCargoId" prefWidth="97.066650390625" text="Cargo" />
             <TableColumn fx:id="colEncargadoId" prefWidth="121.5999633789063" text="Encargado" />
          </columns>

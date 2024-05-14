@@ -68,20 +68,20 @@ public class Empleado {
     }
 
     public Time getHoraEntrada() {
-        return horaDeEntrada;
-    }
+    return horaDeEntrada;
+}
 
-    public void setHoraEntrada(Time horaDeEntrada) {
-        this.horaDeEntrada = horaDeEntrada;
-    }
+public void setHoraEntrada(Time horaDeEntrada) {
+    this.horaDeEntrada = horaDeEntrada;
+}
 
-    public Time getHoraSalida() {
-        return horaDeSalida;
-    }
+public Time getHoraSalida() {
+    return horaDeSalida;
+}
 
-    public void setHoraSalida(Time horaDeSalida) {
-        this.horaDeSalida = horaDeSalida;
-    }
+public void setHoraSalida(Time horaDeSalida) {
+    this.horaDeSalida = horaDeSalida;
+}
 
     public int getCargoId() {
         return cargoId;
