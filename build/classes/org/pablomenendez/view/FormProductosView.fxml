@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.pablomenendez.controller.FormProductosController">
+   <children>
+      <ImageView fitHeight="750.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/FondoFormProductos.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="tfProductoId" editable="false" layoutX="10.0" layoutY="117.0" prefHeight="34.0" prefWidth="250.0">
+         <font>
+            <Font name="Rockwell Condensed Bold" size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="tfDescripcionP" layoutX="6.0" layoutY="286.0" prefHeight="34.0" prefWidth="250.0">
+         <font>
+            <Font name="Rockwell Condensed Bold" size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="tfNombreP" layoutX="7.0" layoutY="206.0" prefHeight="34.0" prefWidth="250.0">
+         <font>
+            <Font name="Rockwell Condensed Bold" size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="tfCantidadStock" layoutX="6.0" layoutY="368.0" prefHeight="34.0" prefWidth="250.0">
+         <font>
+            <Font name="Rockwell Condensed Bold" size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="tfPrecioVU" layoutX="5.0" layoutY="451.0" prefHeight="34.0" prefWidth="250.0">
+         <font>
+            <Font name="Rockwell Condensed Bold" size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="tfPrecioVM" layoutX="6.0" layoutY="538.0" prefHeight="34.0" prefWidth="250.0">
+         <font>
+            <Font name="Rockwell Condensed Bold" size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="tfPrecioC" layoutX="6.0" layoutY="616.0" prefHeight="34.0" prefWidth="250.0">
+         <font>
+            <Font name="Rockwell Condensed Bold" size="18.0" />
+         </font>
+      </TextField>
+      <ComboBox fx:id="cmbDistribuidores" layoutX="369.0" layoutY="120.0" prefHeight="34.0" prefWidth="319.0" />
+      <ComboBox fx:id="cmbCategoriasP" layoutX="371.0" layoutY="208.0" prefHeight="34.0" prefWidth="319.0" />
+      <Button fx:id="btnGuardar" layoutX="10.0" layoutY="669.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="66.0" prefWidth="106.0" style="-fx-background-color: #D0A933; -fx-background-radius: 100; -fx-border-color: black; -fx-border-radius: 100; -fx-border-width: 2;" text="Guardar">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnCancelar" layoutX="131.0" layoutY="671.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="66.0" prefWidth="106.0" style="-fx-background-color: #D0A933; -fx-background-radius: 100; -fx-border-color: black; -fx-border-radius: 100; -fx-border-width: 2;" text="Cancelar">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <ImageView fx:id="imgMostrar" fitHeight="351.0" fitWidth="585.0" layoutX="572.0" layoutY="357.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imgCargar" fitHeight="150.0" fitWidth="200.0" layoutX="392.0" layoutY="377.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/imagenProducto.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

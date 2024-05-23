@@ -279,45 +279,62 @@ Delimiter ;
 -- ///////////////////////////////////////////////////////////////////////////////////////// Procesos Almacenados de Producto ///////////////////////////
 -- agregar
 Delimiter $$
-create procedure sp_agregarProducto(nombreProd varchar(50), descripcionProd varchar(100), cantidadStock int, precioVentaUnitario decimal(10,2), precioVentaMayor decimal(10,2), precioCompra decimal(10,2), imagen blob, distribuidorId int, categoriaProductosId int)
+create procedure sp_agregarProducto(nomP varchar(50), descP varchar(100), cantStock int, precioVU decimal(10,2), precioVM decimal(10,2), precioComp decimal(10,2), img longblob, distId int, categId int)
 begin
-    insert into Productos(nombreProducto, descripcionProducto, cantidadStock, precionVentaUnitario, precioVentaMayor, precioCompra, imagen, distribuidorId, categoriaProductosId)
-    values(nombreProd, descripcionProd, cantidadStock, precioVentaUnitario, precioVentaMayor, precioCompra, imagen, distribuidorId, categoriaProductosId);
+    insert into Productos(nombreProducto, descripcionProducto, cantidadStock, precioVentaUnitario, precioVentaMayor, precioCompra, imagen, distribuidorId, categoriaProductosId)
+    values(nomP, descP, cantStock, precioVU, precioVM, precioComp, img, distId, categId);
 end$$
 Delimiter ;
+
+call sp_agregarProducto('Microondas','Microondas Sony  ',100,250,150,2000,null,1,1);
 
 -- listar
 Delimiter $$
 create procedure sp_listarProductos()
 begin
-    select * from Productos;
+    select P.productosId, P.nombreProducto, P.descripcionProducto, P.cantidadStock, P.precioVentaUnitario, P.precioVentaMayor,  P.precioCompra,P.imagen, 
+       concat("Distribuidor: ", D.nombreDistribuidor) as distribuidor,
+       concat("Categoría: ", CP.nombreCategoria) as categoria
+	from Productos P
+	left join Distribuidores D on P.distribuidorId = D.distribuidorId
+	left join CategoriaProductos CP on P.categoriaproductosId = CP.categoriaproductosId;
 end$$
 Delimiter ;
 
 -- eliminar
 Delimiter $$
-create procedure sp_eliminarProducto(productoId int)
+create procedure sp_eliminarProducto(prodId int)
 begin
-    delete from Productos where productosId = productoId;
+    delete from Productos where productosId = prodId;
 end$$
 Delimiter ;
 
 -- actualizar
 Delimiter $$
-create procedure sp_actualizarProducto(productoId int, nombreProd varchar(50), descripcionProd varchar(100), cantidadStock int, precioVentaUnitario decimal(10,2), precioVentaMayor decimal(10,2), precioCompra decimal(10,2), imagen blob, distribuidorId int, categoriaProductosId int)
+create procedure sp_actualizarProducto(prodId int,nomP varchar(50), descP varchar(100), cantStock int, precioVU decimal(10,2), precioVM decimal(10,2), precioComp decimal(10,2), img longblob, distId int, categId int)
 begin
     update Productos
-    set nombreProducto = nombreProd, descripcionProducto = descripcionProd, cantidadStock = cantidadStock, precionVentaUnitario = precioVentaUnitario, precioVentaMayor = precioVentaMayor, precioCompra = precioCompra, imagen = imagen, distribuidorId = distribuidorId, categoriaProductosId = categoriaProductosId
-    where productosId = productoId;
+    set nombreProducto = nomP, descripcionProducto = descP, cantidadStock = cantStock, precioVentaUnitario = precioVU, precioVentaMayor = precioVM, precioCompra = precioComp, imagen = img, distribuidorId = distId, categoriaProductosId = categId
+    where productosId = prodId;
 end$$
 Delimiter ;
+
+call sp_actualizarProducto(1,'Lavadora','Lavadora Sony  ',50,1500,5000,100,null,1,1);
 
 Delimiter $$
 create procedure sp_buscarProducto(prodId int)
 begin
-    select * from Productos where productosId = prodId;
+   select P.productosId, P.nombreProducto, P.descripcionProducto, P.cantidadStock, P.precioVentaUnitario, P.precioVentaMayor,  P.precioCompra,P.imagen, 
+       concat("Distribuidor: ", D.nombreDistribuidor) as distribuidor,
+       concat("Categoría: ", CP.nombreCategoria) as categoria
+	from Productos P
+	left join Distribuidores D on P.distribuidorId = D.distribuidorId
+	left join CategoriaProductos CP on P.categoriaproductosId = CP.categoriaproductosId
+		where productosId = prodId;
 end$$
 Delimiter ;
+
+
 -- ////////////////////////////////////////////////////////////////////////////////////////// Final /////////////////////////////////////////////////////
 -- ///////////////////////////////////////////////////////////////////////////////////////// Procesos Almacenados de Promociones ///////////////////////////
 -- agregar
@@ -328,12 +345,19 @@ begin
     values(precioProm, descProm, fechaIni, fechaFin, prodId);
 end$$
 Delimiter ;
+call sp_agregarPromocion(1000,'Es black Friday','2024-05-24','2024-05-26',1);
 
 -- listar
 Delimiter $$
 create procedure sp_listarPromociones()
 begin
-    select * from Promociones;
+    select 
+		PR.promocionesId, PR.precioPromocion, PR.descripcionPromocion, PR.fechaInicio, PR.fechaFinalizacion, 
+		concat("Id: ", P.productosId," | ", P.nombreProducto) as Producto
+	from 
+		Promociones PR
+	join 
+		Productos P on PR.productosId = P.productosId;
 end$$
 Delimiter ;
 
@@ -358,7 +382,14 @@ Delimiter ;
 Delimiter $$
 create procedure sp_buscarPromocion(promId int)
 begin
-    select * from Promociones where promocionesId = promId;
+    select 
+		PR.promocionesId, PR.precioPromocion, PR.descripcionPromocion, PR.fechaInicio, PR.fechaFinalizacion, 
+		concat("Id: ", P.productosId," | ", P.nombreProducto) as Producto
+	from 
+		Promociones PR
+	join 
+		Productos P on PR.productosId = P.productosId
+        where promocionesId = promId;
 end$$
 Delimiter ;
 -- ////////////////////////////////////////////////////////////////////////////////////////// Final /////////////////////////////////////////////////////
@@ -387,6 +418,7 @@ begin
 end$$
 Delimiter ;
 
+call
 -- eliminar
 Delimiter $$
 create procedure sp_eliminarEmpleado(empId int)
@@ -397,10 +429,10 @@ Delimiter ;
 
 -- actualizar
 Delimiter $$
-create procedure sp_actualizarEmpleado(empId int, nomEmp varchar(30), apeEmp varchar(30), sueldo decimal(10,2), horaEntr time, horaSalida time, cargId int, encargId int)
+create procedure sp_actualizarEmpleado(empId int, nomEmp varchar(30), apeEmp varchar(30), sueldo decimal(10,2), horaEntr time, horaSalida time, cargId int)
 begin
     update Empleados
-    set nombreEmpleado = nomEmp, apellidoEmpleado = apeEmp, sueldo = sueldo, horaDeEntrada = horaEntr, horaDeSalida = horaSalida, cargoId = cargId, encargadoId = encargId
+    set nombreEmpleado = nomEmp, apellidoEmpleado = apeEmp, sueldo = sueldo, horaDeEntrada = horaEntr, horaDeSalida = horaSalida, cargoId = cargId
     where empleadoId = empId;
 end$$
 Delimiter ;
@@ -408,11 +440,11 @@ Delimiter ;
 Delimiter $$
 create procedure sp_buscarEmpleado(empId int)
 begin
-    select EP.empleadoId, EP.nombreEmpleado, EP.apellidoEmpleado, EP.sueldo, EP.horaentrada, EP.horaSalida,
+    select EP.empleadoId, EP.nombreEmpleado, EP.apellidoEmpleado, EP.sueldo, EP.horaDeEntrada, EP.horaDeSalida,
         concat("Id: ", Ca.cargoId, " | ", Ca.nombreCargo) as cargo, 
         concat(EE.nombreEmpleado, ' ', EE.apellidoEmpleado) as nombreEncargado
-    from Empleados EP
-    join Cargos Ca on EP.cargoId = Ca.cargoId
+    from Empleados ep
+    join Cargo Ca on EP.cargoId = Ca.cargoId
     left join Empleados EE on EP.encargadoId = EE.empleadoId
 	where EP.empleadoId = empId;
 end$$
@@ -432,20 +464,26 @@ Delimiter ;
 -- /////////////////////////////////////////////////////////////////////////////////////////  Procesos Almacenados de Facturas ///////////////////////////
 -- agregar
 Delimiter $$
-create procedure sp_agregarFactura(cliId int, empId int, totalFac decimal(10,2))
+create procedure sp_agregarFactura(cliId int, empId int)
 begin
-    insert into Facturas(fecha, hora, clienteId, empleadoId, total)
-    values(now(), current_time(), cliId, empId, totalFac);
+    insert into Facturas(fecha, hora, clienteId, empleadoId)
+    values(curdate(), curtime(), cliId, empId);
 end$$
 Delimiter ;
 
-call sp_agregarFactura(1,1,40.25);
+call sp_agregarFactura(1,1);
 
 -- listar
 Delimiter $$
 create procedure sp_listarFacturas()
 begin
-    select * from Facturas;
+   select F.facturaId, F.fecha, F.hora, 
+		   concat("Id: ", C.clienteId, " | ", C.nombre, " ", C.apellido) as cliente,
+		   concat("Id: ", E.empleadoId, " | ", E.nombreEmpleado, " ", E.apellidoEmpleado) as empleado,
+		   F.total
+	from Facturas F
+	join Clientes C on F.clienteId = C.clienteId
+	join Empleados E on F.empleadoId = E.empleadoId;
 end$$
 Delimiter ;
 
@@ -459,10 +497,10 @@ Delimiter ;
 
 -- actualizar
 Delimiter $$
-create procedure sp_actualizarFactura(facId int, fechaFac date, horaFac time, cliId int, empId int, totalFac decimal(10,2))
+create procedure sp_actualizarFactura(facId int, cliId int, empId int)
 begin
     update Facturas
-    set fecha = fechaFac, hora = horaFac, clienteId = cliId, empleadoId = empId, total = totalFac
+    set fecha = curdate(), hora = curtime(), clienteId = cliId, empleadoId = empId
     where facturaId = facId;
 end$$
 Delimiter ;
@@ -470,9 +508,18 @@ Delimiter ;
 Delimiter $$
 create procedure sp_buscarFactura(facId int)
 begin
-    select * from Facturas where facturaId = facId;
+    select F.facturaId, F.fecha, F.hora, 
+		   concat("Id: ", C.clienteId, " | ", C.nombre, " ", C.apellido) as cliente,
+		   concat("Id: ", E.empleadoId, " | ", E.nombreEmpleado, " ", E.apellidoEmpleado) as empleado,
+		   F.total
+	from Facturas F
+	join Clientes C on F.clienteId = C.clienteId
+	join Empleados E on F.empleadoId = E.empleadoId
+    where facturaId = facId;
 end$$
 Delimiter ;
+
+call sp_buscarFactura(1);
 -- ////////////////////////////////////////////////////////////////////////////////////////// Final /////////////////////////////////////////////////////
 -- /////////////////////////////////////////////////////////////////////////////////////////  Procesos Almacenados de TicketSoporte ///////////////////////////
 -- agregar

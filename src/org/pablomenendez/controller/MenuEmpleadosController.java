@@ -47,10 +47,10 @@ public class MenuEmpleadosController implements Initializable {
     TableView tblEmpleados;
     
     @FXML
-    TableColumn colEmpleadoId,colNombreE,colApellidoE,colSueldo,colHoraEntrada,colHoraDeSalida,colCargoId,colEncargadoId;
+    TableColumn colEmpleadoId,colNombreE,colApellidoE,colSueldo,colHoraDeEntrada,colHoraDeSalida,colCargoId,colEncargadoId;
     
     @FXML
-    Button btnRegresar,btnAgregar,btnEditar,btnEliminar,btnBuscar,btnAgregarEncargado;
+    Button btnRegresar,btnAgregar,btnActualizar,btnBorrar,btnBuscar,btnAgregarEncargado;
     
     @FXML
     TextField tfEmpleadoId;
@@ -62,10 +62,10 @@ public class MenuEmpleadosController implements Initializable {
             stage.menuPrincipalView();
         }else if(event.getSource() == btnAgregar){
             stage.formEmpleadosView(1);
-        }else if(event.getSource() == btnEditar){
+        }else if(event.getSource() == btnActualizar){
             EmpleadoDTO.getEmpleadoDTO().setEmpleado((Empleado)tblEmpleados.getSelectionModel().getSelectedItem());
             stage.formEmpleadosView(2);
-        }else if(event.getSource() == btnEliminar){
+        }else if(event.getSource() == btnBorrar){
             if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(404).get() == ButtonType.OK){
                 eliminarEmpleado(((Empleado)tblEmpleados.getSelectionModel().getSelectedItem()).getEmpleadoId());
                 cargarDatos();
@@ -98,8 +98,8 @@ public class MenuEmpleadosController implements Initializable {
             colNombreE.setCellValueFactory(new PropertyValueFactory<Empleado, String>("nombreEmpleado"));
             colApellidoE.setCellValueFactory(new PropertyValueFactory<Empleado, String>("apellidoEmpleado"));
             colSueldo.setCellValueFactory(new PropertyValueFactory<Empleado, Double>("sueldo"));
-            colHoraEntrada.setCellValueFactory(new PropertyValueFactory<Empleado, Time>("horaDeEntrada"));
-            colHoraDeSalida.setCellValueFactory(new PropertyValueFactory<Empleado, Time>("horaDeSalida"));
+            colHoraDeEntrada.setCellValueFactory(new PropertyValueFactory<Empleado, Time>("horaEntrada"));
+            colHoraDeSalida.setCellValueFactory(new PropertyValueFactory<Empleado, Time>("horaSalida"));
             colCargoId.setCellValueFactory(new PropertyValueFactory<Empleado, String>("cargo"));
             colEncargadoId.setCellValueFactory(new PropertyValueFactory<Empleado, String>("encargado"));
         }
@@ -155,7 +155,7 @@ public class MenuEmpleadosController implements Initializable {
     public void eliminarEmpleado(int empId){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_EliminarEmpleado(?)";
+            String sql = "call sp_eliminarEmpleado(?)";
             statement = conexion.prepareStatement(sql);
             statement.setInt(1,empId);
             statement.execute();
@@ -195,12 +195,12 @@ public class MenuEmpleadosController implements Initializable {
                 String nombreEmpleado = resultSet.getString("nombreEmpleado");
                 String apellidoEmpleado = resultSet.getString("apellidoEmpleado");
                 double sueldo = resultSet.getDouble("sueldo");
-                Time horaentrada = resultSet.getTime("horaentrada");
-                Time horaSalida = resultSet.getTime("horaSalida");
+                Time horaDeEntrada = resultSet.getTime("horaDeEntrada");
+                Time horaDeSalida = resultSet.getTime("horaDeSalida");
                 String cargoId = resultSet.getString("cargo");
                 String encargadoId = resultSet.getString("nombreEncargado");
             
-                empleado = new Empleado(empleadoId, nombreEmpleado, apellidoEmpleado, sueldo, horaentrada, horaSalida,cargoId,encargadoId);
+                empleado = new Empleado(empleadoId, nombreEmpleado, apellidoEmpleado, sueldo, horaDeEntrada, horaDeSalida,cargoId,encargadoId);
 
             }   
         }catch(SQLException e){
@@ -210,11 +210,9 @@ public class MenuEmpleadosController implements Initializable {
                 if(resultSet != null){
                     resultSet.close();
                 }
-                
                 if(statement != null){
                     statement.close();
                 }
-                
                 if(conexion != null){
                     conexion.close();
                 }

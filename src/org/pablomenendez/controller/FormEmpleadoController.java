@@ -43,18 +43,18 @@ public class FormEmpleadoController implements Initializable {
     private static ResultSet resultSet = null;
     
    @FXML
-    Button btnRegresar,btnGuardar;
+    Button btnCancelar,btnGuardar;
    
    @FXML
    TextField tfEmpleadoId,tfNombreE,tfApellidoE,tfSueldo,tfHoraEntrada,tfHoraSalida;
    
    @FXML
-   ComboBox cmbEncargados,cmbCargos;
+   ComboBox cmbCargos;
    
    @FXML
    private void handleButtonAction(ActionEvent event) {
     
-        if(event.getSource() == btnRegresar){
+        if(event.getSource() == btnCancelar){
             EmpleadoDTO.getEmpleadoDTO().setEmpleado(null);
             stage.menuEmpleadosView();
         }else if(event.getSource() == btnGuardar){
@@ -158,7 +158,7 @@ public class FormEmpleadoController implements Initializable {
     public void editarEmpleado(){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_EditarEmpleado(?,?,?,?,?,?,?)";
+            String sql = "call sp_actualizarEmpleado(?,?,?,?,?,?,?)";
             statement = conexion.prepareStatement(sql);
             statement.setInt(1, Integer.parseInt(tfEmpleadoId.getText()));
             statement.setString(2, tfNombreE.getText());
@@ -236,12 +236,12 @@ public class FormEmpleadoController implements Initializable {
                 String nombreEmpleado = resultSet.getString("nombreEmpleado");
                 String apellidoEmpleado = resultSet.getString("apellidoEmpleado");
                 double sueldo = resultSet.getDouble("sueldo");
-                Time horaentrada = resultSet.getTime("horaentrada");
-                Time horaSalida = resultSet.getTime("horaSalida");
+                Time horaDeEntrada = resultSet.getTime("horaDeEntrada");
+                Time horaDeSalida = resultSet.getTime("horaDeSalida");
                 String cargoId = resultSet.getString("cargo");
                 String encargadoId = resultSet.getString("nombreEncargado");
             
-                empleados.add(new Empleado(empleadoId, nombreEmpleado, apellidoEmpleado, sueldo, horaentrada, horaSalida,cargoId,encargadoId));
+                empleados.add(new Empleado(empleadoId, nombreEmpleado, apellidoEmpleado, sueldo, horaDeEntrada, horaDeSalida,cargoId,encargadoId));
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());
