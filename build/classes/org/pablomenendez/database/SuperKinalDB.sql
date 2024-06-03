@@ -118,4 +118,26 @@ create table DetalleCompra(
         constraint FK_ProductoId_DetalleCompra foreign key DetalleCompra (productosId) references Productos (productosId),
         constraint FK_CompraId_DetalleCompra foreign key DetalleCompra (compraId) references Compras (CompraId)
         
-)
+);
+create table NivelesAcceso(
+		nivelAccesoId int not null auto_increment primary key,
+        nivelAcceso varchar(40) not null
+);
+
+create table Usuarios(
+		usuarioId int not null auto_increment primary key,
+        usuario varchar(30) not null,
+        contrasenia varchar(100) not null,
+        nivelAccesoId int not null,
+        empleadoId int not null,
+        constraint FK_Usuarios_NivelesAcceso foreign key Usuarios (nivelAccesoId)
+			references NivelesAcceso (nivelAccesoId),
+		constraint FK_Usuarios_Empleados foreign key Usuarios (empleadoId) 
+			references Empleados (empleadoId)
+);
+
+
+insert into NivelesAcceso(nivelAcceso) values('Admin');
+insert into NivelesAcceso(nivelAcceso) values('Usuario');
+
+set global time_zone = '-6:00';

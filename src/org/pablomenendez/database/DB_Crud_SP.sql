@@ -610,3 +610,32 @@ begin
     select * from DetalleFactura where detalleFacturaId = detFacId;
 end$$
 Delimiter ;
+
+-- ////////////////////////////////////////////////////////////////////////////////////////// Final /////////////////////////////////////////////////////
+-- /////////////////////////////////////////////////////////////////////////////////////////  Procesos Almacenados de Usuarios ////////////////////////////
+Delimiter $$
+create procedure sp_agregarUsuario(us varchar(30),con varchar(100),nivAcc int, empId int)
+begin
+	insert into Usuarios(usuario,contrasenia,nivelAccesoId,empleadoId) values 
+		(us,con,nivAcc,empId);
+end$$ 
+Delimiter ;
+
+Delimiter $$
+create procedure sp_buscarUsuario(us varchar(30))
+begin 
+	select * from Usuarios
+		where usuario = us;
+end$$
+Delimiter ; 
+
+-- sp listarNivelAcceso
+
+Delimiter $$
+create procedure sp_listarNivelAcceso()
+begin
+select*from nivelesAcceso;
+end $$
+Delimiter ;
+
+select * from Usuarios;

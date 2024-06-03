@@ -30,10 +30,10 @@ public class SuperKinalAlert {
   public void mostrarAlertaInformacion(int code){
       if(code == 400){ // codigo 400 sirve para confirmacion de registro
           Alert alert = new Alert(Alert.AlertType.INFORMATION);
-      alert.setTitle("Confirmacion de Registro");
-      alert.setHeaderText("Confirmacion de Registro");
-      alert.setContentText("Registro realizado con exito");
-      alert.showAndWait();
+           alert.setTitle("Confirmacion de Registro");
+           alert.setHeaderText("Confirmacion de Registro");
+           alert.setContentText("Registro realizado con exito");
+           alert.showAndWait();
       }else if(code == 500 ){ // codigo 500 sirve para confirmacion de Actualizacion
           Alert alert = new Alert(Alert.AlertType.INFORMATION);
           alert.setTitle("Edicion Registro");
@@ -45,6 +45,18 @@ public class SuperKinalAlert {
           alert.setTitle("Campos Pendientes");
           alert.setHeaderText("Campos Pendientes");
           alert.setContentText("Algunos campos necesarios para el registro estan vacios ");
+          alert.showAndWait();
+      }else if(code == 602){
+          Alert alert = new Alert(Alert.AlertType.WARNING);
+          alert.setTitle("Usuario Incorrecto");
+          alert.setHeaderText("Usuario Incorrecto");
+          alert.setContentText("Verifique el Usuario");
+          alert.showAndWait();
+      }else if(code == 005){
+          Alert alert = new Alert(Alert.AlertType.WARNING);
+          alert.setTitle("Contraseña Incorrecta");
+          alert.setHeaderText("Contraseña Incorrecta");
+          alert.setContentText("Verifique la Contraseña");
           alert.showAndWait();
       }
   }
@@ -66,6 +78,14 @@ public class SuperKinalAlert {
       return action;
   }
   
+  
+  public void alertaSaludo(String usuario){
+          Alert alert = new Alert(Alert.AlertType.INFORMATION);
+           alert.setTitle(" Bienvenido");
+           alert.setHeaderText("Bienvenido " + usuario);
+           alert.showAndWait();
+    
+  }
   
 
 }

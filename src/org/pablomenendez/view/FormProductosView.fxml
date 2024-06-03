@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.pablomenendez.controller.FormProductosController">
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.pablomenendez.controller.FormProductosController">
    <children>
       <ImageView fitHeight="750.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -63,7 +63,7 @@
          </font>
       </Button>
       <ImageView fx:id="imgMostrar" fitHeight="351.0" fitWidth="585.0" layoutX="572.0" layoutY="357.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="imgCargar" fitHeight="150.0" fitWidth="200.0" layoutX="392.0" layoutY="377.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgCargar" fitHeight="150.0" fitWidth="200.0" layoutX="392.0" layoutY="377.0" onDragDropped="#handleOnDrop" onDragOver="#handleOnDrag" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/imagenProducto.png" />
          </image>

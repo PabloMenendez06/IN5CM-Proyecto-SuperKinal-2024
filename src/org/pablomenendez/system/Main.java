@@ -23,8 +23,10 @@ import org.pablomenendez.controller.FormDetalleFacturasController;
 import org.pablomenendez.controller.FormDistribuidoresController;
 import org.pablomenendez.controller.FormEmpleadoController;
 import org.pablomenendez.controller.FormFacturasController;
+import org.pablomenendez.controller.FormLoginController;
 import org.pablomenendez.controller.FormProductosController;
 import org.pablomenendez.controller.FormPromocionesController;
+import org.pablomenendez.controller.FormRegistrarUsuarioController;
 import org.pablomenendez.controller.MenuCargoController;
 import org.pablomenendez.controller.MenuCategoriaProductosController;
 import org.pablomenendez.controller.MenuClienteController;
@@ -50,7 +52,7 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         this.stage = stage;
         stage.setTitle("Super Kinal Gragas App");
-        menuPrincipalView();
+        formLoginView();
 
         stage.show();
 
@@ -274,6 +276,24 @@ public class Main extends Application {
             System.out.println(e.getMessage());
         }
     }
+     
+     public void formLoginView(){
+         try{
+             FormLoginController formLoginView = (FormLoginController)switchScene("FormLoginView.fxml",500,750);
+             formLoginView.setStage(this);
+         }catch(Exception e){
+             System.out.println(e.getMessage());
+         }
+     }
+     
+     public void formRegistrarUsuarioView(){
+         try{
+             FormRegistrarUsuarioController formRegistrarUsuarioView = (FormRegistrarUsuarioController)switchScene("FormRegistrarUsuarioView.fxml",500,750);
+             formRegistrarUsuarioView.setStage(this);
+         }catch(Exception e){
+             System.out.println(e.getMessage());
+         }
+     }
     
     
     /**

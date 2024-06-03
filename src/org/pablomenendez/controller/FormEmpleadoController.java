@@ -104,6 +104,9 @@ public class FormEmpleadoController implements Initializable {
                     }
                 }
                 
+            }else if(op == 3){
+                agregarEmpleado();
+                stage.formLoginView();
             }
         }
     }
