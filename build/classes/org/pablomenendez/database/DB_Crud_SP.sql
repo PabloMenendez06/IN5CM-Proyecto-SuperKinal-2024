@@ -629,4 +629,51 @@ begin
 end$$
 Delimiter ; 
 
-call sp_buscarUsuario('jBarrios');
+-- sp listarNivelAcceso
+
+Delimiter $$
+create procedure sp_listarNivelAcceso()
+begin
+select*from nivelesAcceso;
+end $$
+Delimiter ;
+
+select * from Usuarios;
+
+-- ////////////////////////////////////////////////////////////////////////////////////// procedimientos para facturas ///////////////////////
+Delimiter $$
+create procedure sp_asignarTotalFactura(in factId int, in totalFact decimal (10,2))
+Begin
+	Update facturas
+		set total = totalFact
+			where facturaId =factId; 
+End $$
+Delimiter ;
+
+Delimiter $$
+create procedure sp_modificarStock(in detaFactId int, in stockActual int)
+begin
+	Update productos
+		set cantidadStock = stockActual
+			where productosId = detaFactId;
+end $$
+Delimiter ;
+
+Delimiter $$
+create procedure sp_asignarTotalCompra(in compId int, in totalC decimal (10,2))
+Begin
+	Update compras
+		set totalCompra = totalC
+			where compraId =compId; 
+End $$
+Delimiter ;
+
+Delimiter $$
+create procedure sp_modificarStockCompra(in productId int, in stockActual int)
+begin
+	Update productos
+		set cantidadStock = stockActual
+			where productosId = productId;
+end $$
+Delimiter ;
+

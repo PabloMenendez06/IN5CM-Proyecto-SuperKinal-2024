@@ -174,6 +174,70 @@ begin
 end$$
 delimiter :
 -- ////////////////////////////////////////////////////////////////////////////////////////// Final /////////////////////////////////////////////////////
+-- ///////////////////////////////////////////////////////////////////////////////////////// Procesos alamacenados de detalleCompras ///////////////////////////
+delimiter $$
+
+create procedure sp_agregarDetallecompra(cantcomp int, prodidcomp int, compid int)
+begin
+    insert into detallecompra(cantidadcompra, productosid, compraid)
+    values (cantcomp, prodidcomp, compid);
+end$$
+delimiter ;
+
+call sp_agregardetallecompra(5, 1, 1);
+
+delimiter $$
+
+create procedure sp_listardetallecompra()
+begin
+    select detallecompraid, 
+        cantidadcompra, 
+        productoid, 
+        compraid
+    from detallecompra;
+end$$
+delimiter ;
+
+call sp_listardetallecompra();
+
+delimiter $$
+
+create procedure sp_eliminardetallecompra(in detcompid int)
+begin
+    delete from detallecompra 
+    where detallecompraid = detcompid;
+end$$
+delimiter ;
+
+call sp_eliminardetallecompra(1);
+
+delimiter $$
+
+create procedure sp_buscardetallecompra(in detcompid int)
+begin
+    select detallecompraid, 
+        cantidadcompra, 
+        productoid, 
+        compraid
+    from detallecompra 
+    where detallecompraid = detcompid;
+end$$
+delimiter ;
+
+call sp_buscardetallecompra(2);
+
+delimiter $$
+
+create procedure sp_editardetallecompra(in detcompid int, in cantcomp int, in prodidcomp int, in compid int)
+begin
+    update detallecompra
+    set cantidadcompra = cantcomp, productoid = prodidcomp, compraid = compid
+    where detallecompraid = detcompid;
+end$$
+delimiter ;
+
+call sp_editardetallecompra(1, 10, 1, 1);
+-- ////////////////////////////////////////////////////////////////////////////////////////// Final /////////////////////////////////////////////////////
 -- ///////////////////////////////////////////////////////////////////////////////////////// Procesos alamacenados de CategoriaProductos ///////////////////////////
 -- agregar CategoriaProductos
 Delimiter $$
@@ -639,3 +703,41 @@ end $$
 Delimiter ;
 
 select * from Usuarios;
+
+-- ////////////////////////////////////////////////////////////////////////////////////// procedimientos para facturas ///////////////////////
+Delimiter $$
+create procedure sp_asignarTotalFactura(in factId int, in totalFact decimal (10,2))
+Begin
+	Update facturas
+		set total = totalFact
+			where facturaId =factId; 
+End $$
+Delimiter ;
+
+Delimiter $$
+create procedure sp_modificarStock(in detaFactId int, in stockActual int)
+begin
+	Update productos
+		set cantidadStock = stockActual
+			where productosId = detaFactId;
+end $$
+Delimiter ;
+
+Delimiter $$
+create procedure sp_asignarTotalCompra(in compId int, in totalC decimal (10,2))
+Begin
+	Update compras
+		set totalCompra = totalC
+			where compraId =compId; 
+End $$
+Delimiter ;
+
+Delimiter $$
+create procedure sp_modificarStockCompra(in productId int, in stockActual int)
+begin
+	Update productos
+		set cantidadStock = stockActual
+			where productosId = productId;
+end $$
+Delimiter ;
+

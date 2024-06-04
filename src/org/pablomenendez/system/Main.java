@@ -19,6 +19,7 @@ import org.pablomenendez.controller.FormCargoController;
 import org.pablomenendez.controller.FormCategoriaProductoController;
 import org.pablomenendez.controller.FormClienteController;
 import org.pablomenendez.controller.FormComprasController;
+import org.pablomenendez.controller.FormDetalleComprasController;
 import org.pablomenendez.controller.FormDetalleFacturasController;
 import org.pablomenendez.controller.FormDistribuidoresController;
 import org.pablomenendez.controller.FormEmpleadoController;
@@ -52,7 +53,7 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         this.stage = stage;
         stage.setTitle("Super Kinal Gragas App");
-        formLoginView();
+        menuComprasView();
 
         stage.show();
 
@@ -129,6 +130,15 @@ public class Main extends Application {
             System.out.println(e.getMessage());
         }
         
+    }
+     public void formDetalleCompraView(int op){
+        try{
+            FormDetalleComprasController formDetalleFactura = (FormDetalleComprasController)switchScene("FormDetalleComprasView.fxml", 500, 750);
+            formDetalleFactura.setOp(op);
+            formDetalleFactura.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
     public void formCompraView(int op){
         try{
