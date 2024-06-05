@@ -13,18 +13,14 @@ import java.sql.Date;
  * @author informatica
  */
 public class Compras {
-    private int compraId;
-    private Date fechaCompra;
-    private Double totalCompra;
-    
-    public Compras(){
-        
-    }
+     private int compraId;
+   private Date fechaCompra;
+   private double total;
 
-    public Compras(int compraId, Date fechaCompra, Double totalCompra) {
+    public Compras(int compraId, Date fechaCompra, double total) {
         this.compraId = compraId;
         this.fechaCompra = fechaCompra;
-        this.totalCompra = totalCompra;
+        this.total = total;
     }
 
     public int getCompraId() {
@@ -43,16 +39,16 @@ public class Compras {
         this.fechaCompra = fechaCompra;
     }
 
-    public Double getTotalCompra() {
-        return totalCompra;
+    public double getTotal() {
+        return total;
     }
 
-    public void setTotalCompra(Double totalCompra) {
-        this.totalCompra = totalCompra;
+    public void setTotal(double total) {
+        this.total = total;
     }
 
     @Override
     public String toString() {
-        return "Compras{" + "compraId=" + compraId + ", fechaCompra=" + fechaCompra + ", totalCompra=" + totalCompra + '}';
-    } 
+        return "Id: " + compraId + " | " + total;
+    }
 }

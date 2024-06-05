@@ -51,11 +51,11 @@ public class Empleado {
         this.nombreEmpleado = nombreEmpleado;
     }
 
-    public String getapellidoEmpleado() {
+    public String getApellidoEmpleado() {
         return apellidoEmpleado;
     }
 
-    public void setapellidoEmpleado(String apellidoEmpleado) {
+    public void setaApellidoEmpleado(String apellidoEmpleado) {
         this.apellidoEmpleado = apellidoEmpleado;
     }
 
@@ -68,20 +68,20 @@ public class Empleado {
     }
 
     public Time getHoraEntrada() {
-        return horaDeEntrada;
-    }
+    return horaDeEntrada;
+}
 
-    public void setHoraEntrada(Time horaDeEntrada) {
-        this.horaDeEntrada = horaDeEntrada;
-    }
+public void setHoraEntrada(Time horaDeEntrada) {
+    this.horaDeEntrada = horaDeEntrada;
+}
 
-    public Time getHoraSalida() {
-        return horaDeSalida;
-    }
+public Time getHoraSalida() {
+    return horaDeSalida;
+}
 
-    public void setHoraSalida(Time horaDeSalida) {
-        this.horaDeSalida = horaDeSalida;
-    }
+public void setHoraSalida(Time horaDeSalida) {
+    this.horaDeSalida = horaDeSalida;
+}
 
     public int getCargoId() {
         return cargoId;

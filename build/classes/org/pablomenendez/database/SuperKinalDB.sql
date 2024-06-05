@@ -48,10 +48,10 @@ create table Productos(
         nombreProducto varchar(50) not null,
         descripcionProducto varchar(100) not null,
         cantidadStock int(11) not null,
-        precionVentaUnitario decimal(10,2) not null,
+        precioVentaUnitario decimal(10,2) not null,
         precioVentaMayor decimal(10,2) not null,
         precioCompra decimal(10,2) not null,
-        imagen blob,
+        imagen longblob,
         distribuidorId int not null,
         categoriaProductosId int not null,
         constraint FK_DistribuidorId_Productos foreign key Productos(distribuidorId) references Distribuidores (distribuidorId),
@@ -111,11 +111,33 @@ create table DetalleFactura(
 );
 
 create table DetalleCompra(
-		detalleCompra int(11) not null auto_increment primary key,
+		detalleCompraId int(11) not null auto_increment primary key,
         cantidadCompra int (11) not null,
         productosId int, 
         compraId int,
         constraint FK_ProductoId_DetalleCompra foreign key DetalleCompra (productosId) references Productos (productosId),
         constraint FK_CompraId_DetalleCompra foreign key DetalleCompra (compraId) references Compras (CompraId)
         
-)
+);
+create table NivelesAcceso(
+		nivelAccesoId int not null auto_increment primary key,
+        nivelAcceso varchar(40) not null
+);
+
+create table Usuarios(
+		usuarioId int not null auto_increment primary key,
+        usuario varchar(30) not null,
+        contrasenia varchar(100) not null,
+        nivelAccesoId int not null,
+        empleadoId int not null,
+        constraint FK_Usuarios_NivelesAcceso foreign key Usuarios (nivelAccesoId)
+			references NivelesAcceso (nivelAccesoId),
+		constraint FK_Usuarios_Empleados foreign key Usuarios (empleadoId) 
+			references Empleados (empleadoId)
+);
+
+
+insert into NivelesAcceso(nivelAcceso) values('Admin');
+insert into NivelesAcceso(nivelAcceso) values('Usuario');
+
+set global time_zone = '-6:00';

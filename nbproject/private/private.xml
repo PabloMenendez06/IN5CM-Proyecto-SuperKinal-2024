@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/PEDRO/OneDrive/Documentos/NetBeansProjects/SuperKinal/src/org/pablomenendez/controller/FormAsignarEncargadoController.java</file>
-            <file>file:/C:/Users/PEDRO/OneDrive/Documentos/NetBeansProjects/SuperKinal/src/org/pablomenendez/dto/EmpleadoDTO.java</file>
-            <file>file:/C:/Users/PEDRO/OneDrive/Documentos/NetBeansProjects/SuperKinal/src/org/pablomenendez/view/MenuEmpleadosView.fxml</file>
-            <file>file:/C:/Users/PEDRO/OneDrive/Documentos/NetBeansProjects/SuperKinal/src/org/pablomenendez/model/Empleado.java</file>
-            <file>file:/C:/Users/PEDRO/OneDrive/Documentos/NetBeansProjects/SuperKinal/src/org/pablomenendez/system/Main.java</file>
-            <file>file:/C:/Users/PEDRO/OneDrive/Documentos/NetBeansProjects/SuperKinal/src/org/pablomenendez/controller/MenuEmpleadosController.java</file>
+            <file>file:/C:/Users/informatica/Documents/NetBeansProjects/IN5CM-Proyecto-SuperKinal-2024-semana-3/src/org/pablomenendez/dao/Conexion.java</file>
+            <file>file:/C:/Users/informatica/Documents/NetBeansProjects/IN5CM-Proyecto-SuperKinal-2024-semana-3/src/org/pablomenendez/system/Main.java</file>
+            <file>file:/C:/Users/informatica/Documents/NetBeansProjects/IN5CM-Proyecto-SuperKinal-2024-semana-3/src/org/pablomenendez/controller/FormDetalleComprasController.java</file>
+            <file>file:/C:/Users/informatica/Documents/NetBeansProjects/IN5CM-Proyecto-SuperKinal-2024-semana-3/src/org/pablomenendez/controller/MenuComprasController.java</file>
         </group>
     </open-files>
 </project-private>

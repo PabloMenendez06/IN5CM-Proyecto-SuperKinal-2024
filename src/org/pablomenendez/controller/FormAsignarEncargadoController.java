@@ -41,7 +41,7 @@ private Main stage;
     private static ResultSet resultSet = null;
     
    @FXML
-    Button btnRegresar,btnGuardar;
+    Button btnCancelar,btnGuardar;
    
    @FXML
    TextField tfEmpleadoId;
@@ -52,7 +52,7 @@ private Main stage;
    @FXML
    private void handleButtonAction(ActionEvent event) {
     
-        if(event.getSource() == btnRegresar){
+        if(event.getSource() == btnCancelar){
             EmpleadoDTO.getEmpleadoDTO().setEmpleado(null);
             stage.menuEmpleadosView();
         }else if(event.getSource() == btnGuardar){
@@ -81,7 +81,7 @@ private Main stage;
     public void asignarEncargado(){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "CALL sp_AsignarEncargado(?,?)";
+            String sql = "call sp_AsignarEncargado(?,?)";
             statement = conexion.prepareStatement(sql);
             statement.setInt(1, Integer.parseInt(tfEmpleadoId.getText()));
             statement.setInt(2,((Empleado)cmbEncargados.getSelectionModel().getSelectedItem()).getEmpleadoId());
@@ -106,9 +106,9 @@ private Main stage;
     public ObservableList<Empleado> listarEmpleados(){
         ArrayList<Empleado> empleados = new ArrayList<>();
         
-        try{
+         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = " CALL sp_ListarEmpleados()";
+            String sql = " call sp_ListarEmpleados()";
             statement = conexion.prepareStatement(sql);
             resultSet = statement.executeQuery();
             
@@ -117,12 +117,12 @@ private Main stage;
                 String nombreEmpleado = resultSet.getString("nombreEmpleado");
                 String apellidoEmpleado = resultSet.getString("apellidoEmpleado");
                 double sueldo = resultSet.getDouble("sueldo");
-                Time horaentrada = resultSet.getTime("horaentrada");
-                Time horaSalida = resultSet.getTime("horaSalida");
+                Time horaDeEntrada = resultSet.getTime("horaDeEntrada");
+                Time horaDeSalida = resultSet.getTime("horaDeSalida");
                 String cargoId = resultSet.getString("cargo");
                 String encargadoId = resultSet.getString("nombreEncargado");
             
-                empleados.add(new Empleado(empleadoId, nombreEmpleado, apellidoEmpleado, sueldo, horaentrada, horaSalida,cargoId,encargadoId));
+                empleados.add(new Empleado(empleadoId, nombreEmpleado, apellidoEmpleado, sueldo, horaDeEntrada, horaDeSalida,cargoId,encargadoId));
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());
