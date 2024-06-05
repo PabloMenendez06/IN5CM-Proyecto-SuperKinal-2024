@@ -27,6 +27,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.pablomenendez.dao.Conexion;
 import org.pablomenendez.dto.ProductosDTO;
 import org.pablomenendez.model.Producto;
+import org.pablomenendez.report.GenerarReporte;
 import org.pablomenendez.system.Main;
 import org.pablomenendez.utils.SuperKinalAlert;
 
@@ -50,7 +51,7 @@ public class MenuProductosController implements Initializable {
     TableColumn colProductoId,colNombreP,colDescripcionP,colCantidadStock,colPrecioVentaU,colPrecioVentaM,colPrecioC,colImagen,colDistribuidorId,colCategoriaPId;
     
     @FXML
-    Button btnRegresar,btnAgregar,btnActualizar,btnBorrar,btnBuscar;
+    Button btnRegresar,btnAgregar,btnActualizar,btnBorrar,btnBuscar,btnReporte;
     
     @FXML
     TextField tfProductoId;
@@ -79,6 +80,8 @@ public class MenuProductosController implements Initializable {
                 op = 3;
                 cargarDatos();
             }
+        }else if(event.getSource() == btnReporte){
+            GenerarReporte.getInstance().generarProductos();
         }
     }
     

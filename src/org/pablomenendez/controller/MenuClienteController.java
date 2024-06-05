@@ -26,6 +26,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.pablomenendez.dao.Conexion;
 import org.pablomenendez.dto.ClienteDTO;
 import org.pablomenendez.model.Cliente;
+import org.pablomenendez.report.GenerarReporte;
 import org.pablomenendez.system.Main;
 import org.pablomenendez.utils.SuperKinalAlert;
 
@@ -50,7 +51,7 @@ public class MenuClienteController implements Initializable {
     @FXML
     TableColumn colClienteId,colNombre,colApellido,colTelefono,colDireccion,colNit;  
     @FXML
-    Button btnRegresar,btnAgregar,btnActualizar,btnBorrar,btnBuscar;
+    Button btnRegresar,btnAgregar,btnActualizar,btnBorrar,btnBuscar,btnReporte;
     @FXML
     TextField tfClienteId;
     
@@ -77,6 +78,8 @@ public class MenuClienteController implements Initializable {
             op = 3;
             cargarDatos();
             }
+        }else if(event.getSource() == btnReporte){
+            GenerarReporte.getInstance().generarClientes();
         }
     }
     
