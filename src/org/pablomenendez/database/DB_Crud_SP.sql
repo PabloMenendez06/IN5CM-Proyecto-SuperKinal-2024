@@ -173,70 +173,7 @@ begin
 
 end$$
 delimiter :
--- ////////////////////////////////////////////////////////////////////////////////////////// Final /////////////////////////////////////////////////////
--- ///////////////////////////////////////////////////////////////////////////////////////// Procesos alamacenados de detalleCompras ///////////////////////////
-delimiter $$
 
-create procedure sp_agregarDetallecompra(cantcomp int, prodidcomp int, compid int)
-begin
-    insert into detallecompra(cantidadcompra, productosid, compraid)
-    values (cantcomp, prodidcomp, compid);
-end$$
-delimiter ;
-
-call sp_agregardetallecompra(5, 1, 1);
-
-delimiter $$
-
-create procedure sp_listardetallecompra()
-begin
-    select detallecompraid, 
-        cantidadcompra, 
-        productoid, 
-        compraid
-    from detallecompra;
-end$$
-delimiter ;
-
-call sp_listardetallecompra();
-
-delimiter $$
-
-create procedure sp_eliminardetallecompra(in detcompid int)
-begin
-    delete from detallecompra 
-    where detallecompraid = detcompid;
-end$$
-delimiter ;
-
-call sp_eliminardetallecompra(1);
-
-delimiter $$
-
-create procedure sp_buscardetallecompra(in detcompid int)
-begin
-    select detallecompraid, 
-        cantidadcompra, 
-        productoid, 
-        compraid
-    from detallecompra 
-    where detallecompraid = detcompid;
-end$$
-delimiter ;
-
-call sp_buscardetallecompra(2);
-
-delimiter $$
-
-create procedure sp_editardetallecompra(in detcompid int, in cantcomp int, in prodidcomp int, in compid int)
-begin
-    update detallecompra
-    set cantidadcompra = cantcomp, productoid = prodidcomp, compraid = compid
-    where detallecompraid = detcompid;
-end$$
-delimiter ;
-
-call sp_editardetallecompra(1, 10, 1, 1);
 -- ////////////////////////////////////////////////////////////////////////////////////////// Final /////////////////////////////////////////////////////
 -- ///////////////////////////////////////////////////////////////////////////////////////// Procesos alamacenados de CategoriaProductos ///////////////////////////
 -- agregar CategoriaProductos
@@ -741,3 +678,75 @@ begin
 end $$
 Delimiter ;
 
+select * from DetalleFactura
+join Facturas on  DetalleFactura.facturaId = Facturas.facturaId
+join  Clientes on Facturas.clienteId = Clientes.clienteId
+join Productos on DetalleFactura.productoId = Productos.productosId;
+
+delimiter $$
+
+create procedure sp_agregarDetallecompra(cantcomp int, prodidcomp int, compid int)
+begin
+    insert into detallecompra(cantidadcompra, productosid, compraid)
+    values (cantcomp, prodidcomp, compid);
+end$$
+delimiter ;
+
+call sp_agregardetallecompra(5, 1, 1);
+
+delimiter $$
+
+create procedure sp_listardetallecompra()
+begin
+    select detallecompraid, 
+        cantidadcompra, 
+        productosId, 
+        compraid
+    from detallecompra;
+end$$
+delimiter ;
+
+call sp_listardetallecompra();
+
+delimiter $$
+
+create procedure sp_eliminardetallecompra(in detcompid int)
+begin
+    delete from detallecompra 
+    where detallecompraid = detcompid;
+end$$
+delimiter ;
+
+call sp_eliminardetallecompra(1);
+
+delimiter $$
+
+create procedure sp_buscardetallecompra(in detcompid int)
+begin
+    select detallecompraid, 
+        cantidadcompra, 
+        productosid, 
+        compraid
+    from detallecompra 
+    where detallecompraid = detcompid;
+end$$
+delimiter ;
+
+call sp_buscardetallecompra(2);
+
+delimiter $$
+
+create procedure sp_editardetallecompra(in detcompid int, in cantcomp int, in prodidcomp int, in compid int)
+begin
+    update detallecompra
+    set cantidadcompra = cantcomp, productosid = prodidcomp, compraid = compid
+    where detallecompraid = detcompid;
+end$$
+delimiter ;
+
+call sp_editardetallecompra(1, 10, 1, 1);
+
+select * from DetalleFactura
+join Facturas on  DetalleFactura.facturaId = Facturas.facturaId
+join  Clientes on Facturas.clienteId = Clientes.clienteId
+join Productos on DetalleFactura.productoId = Productos.productosId;

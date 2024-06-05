@@ -176,7 +176,7 @@ public class MenuComprasController implements Initializable {
             
         }catch(SQLException e){
             System.out.println(e.getMessage());
-            SuperKinalAlert.getInstance().mostrarAlertaInformacion(14);
+            SuperKinalAlert.getInstance().mostrarAlertaInformacion(300);
         }finally{
             try{
                 if(resultSet != null){

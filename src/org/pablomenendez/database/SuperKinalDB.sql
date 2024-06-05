@@ -111,7 +111,7 @@ create table DetalleFactura(
 );
 
 create table DetalleCompra(
-		detalleCompra int(11) not null auto_increment primary key,
+		detalleCompraId int(11) not null auto_increment primary key,
         cantidadCompra int (11) not null,
         productosId int, 
         compraId int,

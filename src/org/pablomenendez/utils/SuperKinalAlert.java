@@ -58,7 +58,15 @@ public class SuperKinalAlert {
           alert.setHeaderText("Contraseña Incorrecta");
           alert.setContentText("Verifique la Contraseña");
           alert.showAndWait();
-      }
+      }else if(code == 300){// Codigo 300 sirve errores al eliminar
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Error al Eliminar");
+            alert.setHeaderText("Error al Eliminar");
+            alert.setContentText("Este registro se esta usando en una entIdad, por ende no puede ser borrado.");
+            alert.showAndWait();
+        }
+      
+      
   }
   public Optional <ButtonType> mostrarAlertaConfirmacion(int code){
       Optional<ButtonType> action = null;
